@@ -16,11 +16,17 @@ box-sizing:border-box;
 }
 
 body{
-
 height:100vh;
 overflow:hidden;
 
 font-family:'Segoe UI',sans-serif;
+
+background:
+linear-gradient(
+rgba(2,6,23,0.55),
+rgba(2,6,23,0.70)
+),
+url('background1.png');
 
 background-size:cover;
 background-position:center;
@@ -57,9 +63,11 @@ align-items:center;
 
 padding:20px 60px;
 
-border-bottom:1px solid rgba(255,255,255,.1);
+background:rgba(15,23,42,0.45);
 
-backdrop-filter:blur(20px);
+backdrop-filter:blur(18px);
+
+border-bottom:1px solid rgba(255,255,255,.1);
 }
 
 .logo{
@@ -100,18 +108,17 @@ padding:20px;
 
 .card{
 
-background:rgba(255,255,255,.05);
+background:rgba(15,23,42,0.45);
 
-border:1px solid rgba(255,255,255,.1);
+backdrop-filter:blur(18px);
+
+border:1px solid rgba(255,255,255,0.12);
 
 border-radius:24px;
 
-backdrop-filter:blur(20px);
-
 box-shadow:
-0 8px 32px rgba(0,0,0,.3);
+0 8px 32px rgba(0,0,0,.35);
 }
-
 /* JAM */
 
 .time-panel{
