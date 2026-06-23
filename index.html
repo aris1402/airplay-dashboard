@@ -395,29 +395,6 @@ day:'numeric'
 });
 
 }
-
-const backgrounds = [
-"https://source.unsplash.com/1920x1080/?technology",
-"https://source.unsplash.com/1920x1080/?industry",
-"https://source.unsplash.com/1920x1080/?factory",
-"https://source.unsplash.com/1920x1080/?automation",
-"https://source.unsplash.com/1920x1080/?electrical"
-];
-
-function setRandomBackground(){
-
-const random =
-backgrounds[Math.floor(Math.random()*backgrounds.length)];
-
-document.body.style.backgroundImage =
-`linear-gradient(
-rgba(2,6,23,0.80),
-rgba(2,6,23,0.80)
-), url('${random}')`;
-
-}
-
-setRandomBackground();
   
 updateClock();
 
