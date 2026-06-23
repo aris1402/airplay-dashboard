@@ -162,7 +162,33 @@ color:#38bdf8;
 
 font-weight:700;
 }
+.weather-info{
 
+display:flex;
+justify-content:center;
+gap:60px;
+
+margin-top:25px;
+
+font-size:28px;
+
+color:#cbd5e1;
+
+text-align:center;
+}
+
+.weather-label{
+
+font-size:16px;
+
+letter-spacing:2px;
+
+color:#38bdf8;
+
+margin-bottom:8px;
+
+font-weight:600;
+}
 /* AIRPLAY */
 
 .airplay-panel{
@@ -320,6 +346,25 @@ MANUFACTURING AND INTEGRATING ELECTRICAL PANELS AND SYSTEM
 --°C
 </div>
 
+<div class="weather-info">
+
+<div>
+<div class="weather-label">📍 LOCATION</div>
+<div id="location">Kab. Tangerang</div>
+</div>
+
+<div>
+<div class="weather-label">💧 HUMIDITY</div>
+<div id="humidity">--%</div>
+</div>
+
+<div>
+<div class="weather-label">🌬️ WIND</div>
+<div id="wind">-- km/h</div>
+</div>
+
+</div>
+
 </div>
 
 <div class="card airplay-panel">
@@ -405,15 +450,25 @@ async function loadWeather(){
 try{
 
 const r = await fetch(
-'https://api.open-meteo.com/v1/forecast?latitude=-6.2886&longitude=106.7179&current_weather=true'
+'https://api.open-meteo.com/v1/forecast?latitude=-6.2886&longitude=106.7179&current=temperature_2m,relative_humidity_2m,wind_speed_10m'
 );
 
 const d = await r.json();
 
 document.getElementById("temp").innerHTML =
-d.current_weather.temperature + '°C';
+Math.round(d.current.temperature_2m) + '°C';
 
-}catch(e){}
+document.getElementById("humidity").innerHTML =
+d.current.relative_humidity_2m + '%';
+
+document.getElementById("wind").innerHTML =
+Math.round(d.current.wind_speed_10m) + ' km/h';
+
+}catch(e){
+
+console.log("Weather Error:",e);
+
+}
 
 }
 
