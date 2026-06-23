@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Meeting Room Display</title>
+
+<style>
+body{
+    margin:0;
+    background:#111;
+    color:white;
+    font-family:Arial, sans-serif;
+    text-align:center;
+}
+
+.header{
+    padding:30px;
+    background:#1e1e1e;
+}
+
+.company{
+    font-size:48px;
+    font-weight:bold;
+}
+
+.clock{
+    font-size:120px;
+    margin-top:40px;
+}
+
+.date{
+    font-size:32px;
+}
+
+.weather{
+    font-size:36px;
+    margin-top:30px;
+}
+
+.airplay{
+    margin-top:50px;
+    font-size:28px;
+    line-height:1.8;
+}
+
+.qr{
+    margin-top:20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <div class="company">PT ABC INDUSTRI</div>
+    <div>Meeting Room Display</div>
+</div>
+
+<div class="clock" id="clock">00:00:00</div>
+
+<div class="date" id="date"></div>
+
+<div class="weather" id="weather">
+Memuat suhu...
+</div>
+
+<div class="airplay">
+<h2>AIRPLAY READY</h2>
+
+1. Hubungkan iPhone ke WiFi kantor<br>
+2. Buka Control Center<br>
+3. Pilih Screen Mirroring<br>
+4. Pilih "Meeting Room TV"<br>
+5. Masukkan kode AirPlay jika diminta
+</div>
+
+<script>
+
+function updateClock(){
+
+let now=new Date();
+
+document.getElementById("clock").innerHTML=
+now.toLocaleTimeString("id-ID");
+
+document.getElementById("date").innerHTML=
+now.toLocaleDateString("id-ID",{
+weekday:'long',
+year:'numeric',
+month:'long',
+day:'numeric'
+});
+
+}
+
+setInterval(updateClock,1000);
+updateClock();
+
+async function loadWeather(){
+
+try{
+
+const response=await fetch(
+'https://api.open-meteo.com/v1/forecast?latitude=-6.178&longitude=106.631&current_weather=true'
+);
+
+const data=await response.json();
+
+document.getElementById("weather").innerHTML=
+'Suhu Tangerang : '+
+data.current_weather.temperature+
+'°C';
+
+}catch(e){
+
+document.getElementById("weather").innerHTML=
+'Suhu tidak tersedia';
+
+}
+
+}
+
+loadWeather();
+
+</script>
+
+</body>
+</html>
