@@ -1,206 +1,418 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PT Nurinda - AirPlay Dashboard</title>
+
+<title>PT Nurinda Meeting Room</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
 body{
+
 height:100vh;
 overflow:hidden;
-font-family:Segoe UI,Arial,sans-serif;
-background:#0b0d10;
-color:#fff;
-background-image:
-linear-gradient(rgba(255,180,0,.05) 1px, transparent 1px),
-linear-gradient(90deg, rgba(255,180,0,.05) 1px, transparent 1px);
-background-size:40px 40px;
+
+font-family:'Segoe UI',sans-serif;
+
+background:
+radial-gradient(circle at top,#1e293b 0%,#0f172a 40%,#020617 100%);
+
+color:white;
 }
+
+/* efek garis halus */
+
+body::before{
+
+content:'';
+position:fixed;
+inset:0;
+
+background:
+linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+
+background-size:50px 50px;
+
+pointer-events:none;
+}
+
+/* HEADER */
 
 .header{
+
 height:18vh;
+
 display:flex;
 align-items:center;
-padding:20px 40px;
-border-bottom:3px solid #ffb400;
-background:linear-gradient(180deg,#171a1f,#0d0f13);
+
+padding:20px 60px;
+
+border-bottom:1px solid rgba(255,255,255,.1);
+
+backdrop-filter:blur(20px);
 }
 
-.logo{height:120px;margin-right:30px}
-.title{font-size:64px;font-weight:800;letter-spacing:2px}
-.subtitle{font-size:26px;color:#ffb400}
+.logo{
+
+height:100px;
+margin-right:25px;
+}
+
+.company{
+
+font-size:54px;
+font-weight:800;
+
+letter-spacing:2px;
+}
+
+.subtitle{
+
+font-size:24px;
+
+color:#38bdf8;
+}
+
+/* MAIN */
 
 .main{
-height:62vh;
-display:grid;
-grid-template-columns:48% 52%;
-gap:16px;
-padding:16px;
-}
 
-.panel{
-border:2px solid #ffb400;
-border-radius:14px;
-background:rgba(0,0,0,.35);
-box-shadow:0 0 20px rgba(255,180,0,.15);
+height:62vh;
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:20px;
+
 padding:20px;
 }
 
+.card{
+
+background:rgba(255,255,255,.05);
+
+border:1px solid rgba(255,255,255,.1);
+
+border-radius:24px;
+
+backdrop-filter:blur(20px);
+
+box-shadow:
+0 8px 32px rgba(0,0,0,.3);
+}
+
+/* JAM */
+
+.time-panel{
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+}
+
 .clock{
-font-size:9vw;
+
+font-size:150px;
+
 font-weight:700;
-text-align:center;
-color:#ffbf00;
-text-shadow:0 0 20px rgba(255,191,0,.5);
+
+line-height:1;
+
+color:#ffffff;
 }
 
 .date{
-text-align:center;
-font-size:2vw;
-margin-top:10px;
-}
 
-.weatherBox{
-margin-top:25px;
-text-align:center;
-}
+font-size:36px;
 
-.weatherLabel{
-color:#ffb400;
-font-size:1.4vw;
+margin-top:20px;
+
+color:#cbd5e1;
 }
 
 .temp{
-font-size:5vw;
-color:#38c8ff;
+
+font-size:80px;
+
+margin-top:40px;
+
+color:#38bdf8;
+
 font-weight:700;
 }
 
-.airTitle{
-font-size:4vw;
-color:#ffb400;
+/* AIRPLAY */
+
+.airplay-panel{
+
+padding:40px;
+}
+
+.airplay-title{
+
+font-size:72px;
+
 font-weight:800;
+
 text-align:center;
+
+color:#38bdf8;
 }
 
 .meeting{
-font-size:2.5vw;
+
+font-size:48px;
+
 text-align:center;
-margin:10px 0 20px;
+
+margin-top:10px;
+
+margin-bottom:30px;
+}
+
+.content{
+
+display:grid;
+
+grid-template-columns:1fr 280px;
+
+gap:20px;
 }
 
 .steps{
-font-size:1.2vw;
+
+font-size:30px;
+
 line-height:1.8;
-margin-top:10px;
 }
 
-.qrWrap{
+.qr{
+
 text-align:center;
-margin-top:20px;
 }
 
-.qrWrap img{
-height:220px;
-border:4px solid #ffb400;
-padding:8px;
+.qr img{
+
+width:240px;
+
+border-radius:20px;
+
 background:white;
+
+padding:10px;
 }
+
+.ssid{
+
+margin-top:15px;
+
+font-size:24px;
+}
+
+/* FOOTER */
 
 .footer{
+
 height:20vh;
+
 display:flex;
-align-items:center;
+
 justify-content:center;
-background:#0f2810;
-border-top:3px solid #22ff55;
-font-size:5vw;
-font-weight:800;
-color:#4dff68;
-text-shadow:0 0 20px rgba(77,255,104,.7);
+
+align-items:center;
 }
 
-.badge{
-display:inline-block;
-padding:8px 14px;
-border:1px solid #ffb400;
-border-radius:6px;
-margin-bottom:10px;
-color:#ffb400;
+.status{
+
+background:rgba(34,197,94,.15);
+
+border:1px solid rgba(34,197,94,.4);
+
+padding:25px 60px;
+
+border-radius:20px;
+
+font-size:72px;
+
+font-weight:800;
+
+color:#4ade80;
+
+box-shadow:
+0 0 40px rgba(34,197,94,.2);
 }
+
+.dot{
+
+display:inline-block;
+
+width:22px;
+
+height:22px;
+
+background:#4ade80;
+
+border-radius:50%;
+
+margin-right:20px;
+
+box-shadow:0 0 20px #4ade80;
+}
+
 </style>
 </head>
+
 <body>
 
 <div class="header">
+
 <img src="logo.png" class="logo">
+
 <div>
-<div class="title">PT NURINDA</div>
-<div class="subtitle">MANUFACTURING AND INTEGRATING ELECTRICAL PANELS AND SYSTEM</div>
+
+<div class="company">
+PT NURINDA
 </div>
+
+<div class="subtitle">
+MANUFACTURING AND INTEGRATING ELECTRICAL PANELS AND SYSTEM
+</div>
+
+</div>
+
 </div>
 
 <div class="main">
 
-<div class="panel">
-<div class="badge">TIME</div>
-<div class="clock" id="clock">00:00:00</div>
-<div class="date" id="date"></div>
+<div class="card time-panel">
 
-<div class="weatherBox">
-<div class="weatherLabel">KABUPATEN TANGERANG</div>
-<div class="temp" id="temp">--°C</div>
-</div>
+<div class="clock" id="clock">
+00:00
 </div>
 
-<div class="panel">
-<div class="airTitle">AIRPLAY READY</div>
-<div class="meeting">Meeting Room</div>
+<div class="date" id="date">
+-
+</div>
 
-<div style="display:grid;grid-template-columns:55% 45%;gap:10px">
+<div class="temp" id="temp">
+--°C
+</div>
+
+</div>
+
+<div class="card airplay-panel">
+
+<div class="airplay-title">
+AIRPLAY READY
+</div>
+
+<div class="meeting">
+Meeting Room
+</div>
+
+<div class="content">
+
 <div class="steps">
-1. Connect your device to the Guest Wi-Fi<br>
+
+1. Connect to WiFi Guest<br>
 2. Open Control Center<br>
 3. Select Screen Mirroring<br>
-4. Select <b>Meeting Room</b><br>
-5. Enter the AirPlay code if prompted
+4. Select Meeting Room<br>
+5. Enter AirPlay Code
+
 </div>
 
-<div class="qrWrap">
-<img src="wifi-qr.png" alt="QR WiFi">
-<div style="margin-top:10px">SSID : <b>NRD Guest</b></div>
+<div class="qr">
+
+<img src="wifi-qr.png">
+
+<div class="ssid">
+
+SSID : <b>NRD Guest</b>
+
 </div>
+
 </div>
+
+</div>
+
 </div>
 
 </div>
 
 <div class="footer">
-● AIRPLAY AVAILABLE
+
+<div class="status">
+
+<span class="dot"></span>
+
+READY FOR PRESENTATION
+
+</div>
+
 </div>
 
 <script>
+
 function updateClock(){
-const now=new Date();
-document.getElementById("clock").innerHTML=now.toLocaleTimeString("id-ID");
-document.getElementById("date").innerHTML=now.toLocaleDateString("id-ID",{
-weekday:'long',year:'numeric',month:'long',day:'numeric'
+
+const now = new Date();
+
+document.getElementById("clock").innerHTML =
+now.toLocaleTimeString('id-ID',{
+hour:'2-digit',
+minute:'2-digit'
 });
+
+document.getElementById("date").innerHTML =
+now.toLocaleDateString('id-ID',{
+weekday:'long',
+year:'numeric',
+month:'long',
+day:'numeric'
+});
+
 }
-setInterval(updateClock,1000);
+
 updateClock();
 
-async function weather(){
+setInterval(updateClock,1000);
+
+async function loadWeather(){
+
 try{
-const r=await fetch("https://api.open-meteo.com/v1/forecast?latitude=-6.1783&longitude=106.6319&current_weather=true");
-const d=await r.json();
-document.getElementById("temp").innerHTML=d.current_weather.temperature+"°C";
+
+const r = await fetch(
+'https://api.open-meteo.com/v1/forecast?latitude=-6.2886&longitude=106.7179&current_weather=true'
+);
+
+const d = await r.json();
+
+document.getElementById("temp").innerHTML =
+d.current_weather.temperature + '°C';
+
 }catch(e){}
+
 }
-weather();
-setInterval(weather,600000);
+
+loadWeather();
+
+setInterval(loadWeather,600000);
+
 </script>
 
 </body>
