@@ -21,21 +21,23 @@ box-sizing:border-box;
 body{
 height:100vh;
 overflow:hidden;
-  
+
 zoom:0.95;
-  
-font-family:'Manrope',sans-serif;
+
+font-family:'Inter',sans-serif;
 
 background:
 linear-gradient(
-rgba(2,6,23,0.15),
-rgba(2,6,23,0.25)
+rgba(2,6,23,0.35),
+rgba(2,6,23,0.55)
 ),
 url('background1.png');
 
 background-size:cover;
 background-position:center;
 background-repeat:no-repeat;
+
+transition:background-image 2s ease-in-out;
 
 color:white;
 }
@@ -56,23 +58,7 @@ background-size:50px 50px;
 
 pointer-events:none;
 }
-body::after{
-content:'';
-position:fixed;
-left:0;
-right:0;
-bottom:0;
-height:180px;
 
-background:linear-gradient(
-to top,
-rgba(0,0,0,0.95),
-rgba(0,0,0,0)
-);
-
-pointer-events:none;
-z-index:1;
-}
 /* HEADER */
 
 .header{
@@ -477,6 +463,36 @@ loadWeather();
 
 setInterval(loadWeather,600000);
 
+ /* Background Slideshow */
+
+const backgrounds = [
+    'background1.png',
+    'background2.png',
+    'background3.png',
+    'background4.png',
+];
+
+let currentBackground = 0;
+
+function changeBackground(){
+
+    document.body.style.backgroundImage =
+    `linear-gradient(
+    rgba(2,6,23,0.35),
+    rgba(2,6,23,0.55)
+    ),
+    url('${backgrounds[currentBackground]}')`;
+
+    currentBackground++;
+
+    if(currentBackground >= backgrounds.length){
+        currentBackground = 0;
+    }
+}
+
+changeBackground();
+
+setInterval(changeBackground, 20000); 
 </script>
 
 </body>
