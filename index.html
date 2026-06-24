@@ -58,7 +58,19 @@ background-size:50px 50px;
 
 pointer-events:none;
 }
+body::after{
+    content:'';
+    position:fixed;
+    inset:0;
 
+    background:
+    linear-gradient(
+        rgba(2,6,23,0.35),
+        rgba(2,6,23,0.55)
+    );
+
+    z-index:-1;
+}
 /* HEADER */
 
 .header{
