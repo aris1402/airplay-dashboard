@@ -236,7 +236,57 @@ margin-right:20px;
 
 box-shadow:0 0 20px #4ade80;
 }
+.ticker{
 
+position:fixed;
+
+bottom:0;
+
+left:0;
+
+width:100%;
+
+height:45px;
+
+background:rgba(0,0,0,0.6);
+
+border-top:1px solid rgba(56,189,248,0.3);
+
+overflow:hidden;
+
+z-index:999;
+}
+
+.ticker-content{
+
+white-space:nowrap;
+
+display:inline-block;
+
+padding-left:100%;
+
+line-height:45px;
+
+font-size:18px;
+
+font-weight:600;
+
+color:#38bdf8;
+
+animation:ticker 35s linear infinite;
+}
+
+@keyframes ticker{
+
+0%{
+transform:translateX(0);
+}
+
+100%{
+transform:translateX(-100%);
+}
+
+}
 </style>
 </head>
 
@@ -305,19 +355,26 @@ AIRPLAY READY
 
 <div class="meeting">
 Meeting Room AirPlay Display
-<br>
-Select <b>"Meeting Room"</b> from Screen Mirroring
 </div>
 
 <div class="content">
 
 <div class="steps">
 
-1. Connect to WiFi Guest<br>
+<h3>🍎 Apple (iPhone / iPad / MacBook)</h3>
+
+1. Connect to <b>NRD Guest</b><br>
 2. Open Control Center<br>
-3. Select Screen Mirroring<br>
-4. Select Meeting Room<br>
-5. Enter AirPlay Code
+3. Select <b>Screen Mirroring</b><br>
+4. Choose <b>Meeting Room</b><br>
+
+<br>
+
+<h3>🪟 Windows Laptop</h3>
+
+1. Connect to <b>NRD Guest</b><br>
+2. Press <b>Windows + K</b><br>
+3. Select <b>Meeting Room</b><br>
 
 </div>
 
@@ -326,9 +383,7 @@ Select <b>"Meeting Room"</b> from Screen Mirroring
 <img src="wifi-qr.png">
 
 <div class="ssid">
-
 SSID : <b>NRD Guest</b>
-
 </div>
 
 </div>
@@ -346,6 +401,15 @@ SSID : <b>NRD Guest</b>
 <span class="dot"></span>
 
 READY FOR PRESENTATION
+
+</div>
+  <div class="ticker">
+
+<div class="ticker-content">
+
+PT NURINDA • ELECTRICAL PANEL MANUFACTURING • LVMDP • MDB • CAPACITOR BANK • PLC AUTOMATION • SCADA • ENERGY MONITORING SYSTEM • AIRPLAY MEETING ROOM READY • WINDOWS (WIN + K) • MACBOOK / IPHONE (SCREEN MIRRORING)
+
+</div>
 
 </div>
 
