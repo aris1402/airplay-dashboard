@@ -19,27 +19,26 @@ box-sizing:border-box;
 }
 
 body{
-height:100vh;
-overflow:hidden;
+    height:100vh;
+    overflow:hidden;
 
-zoom:0.95;
+    zoom:0.95;
 
-font-family:'Inter',sans-serif;
+    font-family:'Inter',sans-serif;
 
-background:
-linear-gradient(
-rgba(2,6,23,0.35),
-rgba(2,6,23,0.55)
-),
-url('background1.png');
+    background:
+    linear-gradient(
+        rgba(2,6,23,0.45),
+        rgba(2,6,23,0.65)
+    ),
+    url('background1.png');
 
-background-size:cover;
-background-position:center;
-background-repeat:no-repeat;
+    background-size:cover;
+    background-position:center center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
 
-transition:background-image 2s ease-in-out;
-
-color:white;
+    color:white;
 }
 
 /* efek garis halus */
@@ -58,19 +57,7 @@ background-size:50px 50px;
 
 pointer-events:none;
 }
-body::after{
-    content:'';
-    position:fixed;
-    inset:0;
 
-    background:
-    linear-gradient(
-        rgba(2,6,23,0.35),
-        rgba(2,6,23,0.55)
-    );
-
-    z-index:-1;
-}
 /* HEADER */
 
 .header{
@@ -220,21 +207,40 @@ text-align:center;
 }
 
 .footer{
-
-height:20vh;
+height:22vh;
 
 display:flex;
-
 justify-content:center;
+align-items:flex-start;
 
-align-items:center;
+padding-top:20px;
 
-padding-bottom:0;
+position:relative;
+}
+
+    .footer::before{
+    content:'';
+
+    position:absolute;
+
+    left:0;
+    right:0;
+    bottom:0;
+
+    height:140px;
+
+    background:
+    linear-gradient(background:rgba(16,185,129,.18);
+        transparent,
+        rgba(2,6,23,0.65)
+    );
+
+    pointer-events:none;
 }
 
 .status{
 
-background:rgba(16,185,129,.25);
+background:rgba(16,185,129,.18);
 
 backdrop-filter:blur(10px);
 
@@ -251,7 +257,7 @@ font-weight:700;
 color:#ecfeff;
 
 box-shadow:
-0 8px 30px rgba(16,185,129,.25);
+0 10px 40px rgba(16,185,129,.18);
 
 display:flex;
 align-items:center;
@@ -481,30 +487,28 @@ const backgrounds = [
     'background1.png',
     'background2.png',
     'background3.png',
-    'background4.png',
+    'background4.png'
 ];
 
 let currentBackground = 0;
 
 function changeBackground(){
 
-    document.body.style.backgroundImage =
-    `linear-gradient(
-    rgba(2,6,23,0.35),
-    rgba(2,6,23,0.55)
+    currentBackground =
+    (currentBackground + 1) % backgrounds.length;
+
+    document.body.style.background =
+    `
+    linear-gradient(
+        rgba(2,6,23,0.45),
+        rgba(2,6,23,0.65)
     ),
-    url('${backgrounds[currentBackground]}')`;
-
-    currentBackground++;
-
-    if(currentBackground >= backgrounds.length){
-        currentBackground = 0;
-    }
+    url('${backgrounds[currentBackground]}')
+    center center / cover no-repeat fixed
+    `;
 }
 
-changeBackground();
-
-setInterval(changeBackground, 1800000); 
+setInterval(changeBackground,1800000); // 30 menit
 </script>
 
 </body>
